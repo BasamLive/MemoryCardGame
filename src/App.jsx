@@ -107,7 +107,12 @@ function App() {
   return (
     <main>
       {areAllCardsMatched && (
-        <Confetti width={window.innerWidth} height={window.innerHeight} />
+        <Confetti
+          width={window.innerWidth}
+          height={window.innerHeight}
+          numberOfPieces={500}
+          recycle={false}
+        />
       )}
       <h1>Memory</h1>
       {!areAllCardsMatched && <Form handleSubmit={startGame} />}
