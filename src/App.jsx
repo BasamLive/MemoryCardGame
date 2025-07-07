@@ -44,6 +44,7 @@ function App() {
       if (!response.ok) {
         throw new Error("There was problem fetching your endpoint");
       }
+
       const data = await response.json();
       const dataSlice = getDataSlice(data);
       const emojisArray = await getEmojisArray(dataSlice);
