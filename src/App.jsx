@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Confetti from "react-confetti";
 
 import Form from "./components/Form";
 import MemoryCard from "./components/MemoryCard";
@@ -104,6 +105,9 @@ function App() {
 
   return (
     <main>
+      {areAllCardsMatched && (
+        <Confetti width={window.innerWidth} height={window.innerHeight} />
+      )}
       <h1>Memory</h1>
       {!areAllCardsMatched && <Form handleSubmit={startGame} />}
       {isGameOn && !areAllCardsMatched && (
