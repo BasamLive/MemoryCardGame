@@ -27,7 +27,6 @@ function App() {
   const [areAllCardsMatched, setAreAllCardsMatched] = useState(false);
   const [isError, setIsError] = useState(false);
   const [formData, setFormData] = useState(initialFormData);
-  console.log(formData);
 
   useEffect(
     () => {
@@ -152,7 +151,6 @@ function App() {
   // Handling the changes in the Form component
   /////////////////////////////////////////////
   const handleFormChange = (e) => {
-    e.preventDefault();
     setFormData((prevData) => ({
       ...prevData,
       [e.target.name]: e.target.value,
