@@ -27,7 +27,6 @@ function App() {
   const [areAllCardsMatched, setAreAllCardsMatched] = useState(false);
   const [isError, setIsError] = useState(false);
   const [formData, setFormData] = useState(initialFormData);
-  console.log(formData);
 
   useEffect(
     () => {
@@ -168,7 +167,7 @@ function App() {
         <Confetti
           width={window.innerWidth}
           height={window.innerHeight}
-          numberOfPieces={500}
+          numberOfPieces={1000}
           recycle={false}
         />
       )}
