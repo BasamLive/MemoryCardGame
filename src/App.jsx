@@ -12,6 +12,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState([]);
   const [matchCards, setMatchCards] = useState([]);
   const [areAllCardsMatched, setAreAllCardsMatched] = useState(false);
+  const [isError, setIisError] = useState(false);
 
   useEffect(
     () => {
@@ -39,11 +40,13 @@ function App() {
   async function startGame(e) {
     e.preventDefault();
     try {
+      if (isError) throw new Error("I am now throwing new custom error");
       const response = await fetch(
         "https://emojihub.yurace.pro/api/all/category/animals-and-nature"
       );
+
       if (!response.ok) {
-        throw new Error("There was problem fetching your endpoint");
+        throw new Error("There was a problem fetching this endpoint.");
       }
 
       const data = await response.json();
@@ -54,6 +57,7 @@ function App() {
       setIsGameOn(true);
     } catch (error) {
       console.log(error);
+      setIisError(true);
     }
   }
   //////////////////////////////////////////////////////////
@@ -112,6 +116,9 @@ function App() {
     setMatchCards([]);
     setSelectedCard([]);
   };
+  function resetError() {
+    setIisError(false);
+  }
 
   return (
     <main>
