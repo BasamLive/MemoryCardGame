@@ -1,17 +1,25 @@
+////////////////////////////
+// All of the imports
+////////////////////////////
+
 import { useState, useEffect } from "react";
 import Confetti from "react-confetti";
-
 import Form from "./components/Form";
 import MemoryCard from "./components/MemoryCard";
 import AssistiveTechInfo from "./components/AssistiveTechInfo";
 import GameOver from "./components/GameOver";
 import ErrorCard from "./components/ErrorCard";
-
+/////////////////////////////
+// The beginning of our app
+////////////////////////////
 function App() {
   const initialFormData = {
     category: "animals-and-nature",
     number: 5,
   };
+  ////////////////////////
+  // Our states Variables
+  ////////////////////////
   const [isGameOn, setIsGameOn] = useState(false);
   const [emojiData, setEmojiData] = useState([]);
   const [selectedCard, setSelectedCard] = useState([]);
@@ -44,6 +52,10 @@ function App() {
     }
   }, [matchCards]);
 
+  ///////////////////////////////////
+  // The game starter function
+  //////////////////////////////////
+
   async function startGame(e) {
     e.preventDefault();
     try {
@@ -68,7 +80,7 @@ function App() {
     }
   }
   //////////////////////////////////////////////////////////
-  // the end of the start game faunction
+  // Getting the data
   //////////////////////////////////////////////////////////
 
   function getDataSlice(data) {
@@ -76,7 +88,9 @@ function App() {
     const dataSlice = randomIndices.map((index) => data[index]);
     return dataSlice;
   }
-
+  ////////////////////////////////////////////////////
+  // Pushing random number to the randomIndeciesArray
+  ///////////////////////////////////////////////////
   function getRandomIndecies(data) {
     const randomIndeciesArray = [];
     for (let i = 0; i < formData.number / 2; i++) {
@@ -89,7 +103,9 @@ function App() {
     }
     return randomIndeciesArray;
   }
-
+  /////////////////////////
+  // Getting the emojis
+  ////////////////////////
   async function getEmojisArray(data) {
     const pairedEmojisArray = [...data, ...data];
     for (let i = pairedEmojisArray.length - 1; i > 0; i--) {
@@ -102,7 +118,7 @@ function App() {
   }
 
   ////////////////////////////////////////////
-  // Start Game function
+  // Flipping the Cards
   ///////////////////////////////////////////
 
   function turnCard(name, index) {
@@ -115,7 +131,9 @@ function App() {
       setSelectedCard([{ name, index }]);
     }
   }
-
+  /////////////////////////////
+  // The game reseter function
+  /////////////////////////////
   const resetGame = () => {
     setIsGameOn(false);
     setAreAllCardsMatched(false);
@@ -123,10 +141,16 @@ function App() {
     setMatchCards([]);
     setSelectedCard([]);
   };
+
+  ////////////////////////
+  // Rest the Error
+  ///////////////////////
   function resetError() {
     setIsError(false);
   }
-
+  /////////////////////////////////////////////
+  // Handling the changes in the Form component
+  /////////////////////////////////////////////
   const handleFormChange = (e) => {
     e.preventDefault();
     setFormData((prevData) => ({
@@ -134,7 +158,9 @@ function App() {
       [e.target.name]: e.target.value,
     }));
   };
-
+  /////////////////////////////
+  // What the App renders
+  ////////////////////////////
   return (
     <main>
       {areAllCardsMatched && (
@@ -164,8 +190,6 @@ function App() {
       {isError && <ErrorCard handleClick={resetError} />}
     </main>
   );
-
-  // ill stop till here today however ill proceed from tomorrow and the same time
 }
 
 export default App;
