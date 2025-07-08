@@ -15,7 +15,7 @@ import ErrorCard from "./components/ErrorCard";
 function App() {
   const initialFormData = {
     category: "animals-and-nature",
-    number: 5,
+    number: 10,
   };
   ////////////////////////
   // Our states Variables
@@ -27,6 +27,7 @@ function App() {
   const [areAllCardsMatched, setAreAllCardsMatched] = useState(false);
   const [isError, setIsError] = useState(false);
   const [formData, setFormData] = useState(initialFormData);
+  console.log(formData);
 
   useEffect(
     () => {
@@ -100,6 +101,8 @@ function App() {
         i--;
       }
     }
+    console.log(formData.number);
+    console.log(randomIndeciesArray);
     return randomIndeciesArray;
   }
   /////////////////////////
