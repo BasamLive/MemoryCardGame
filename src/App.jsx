@@ -8,12 +8,18 @@ import GameOver from "./components/GameOver";
 import ErrorCard from "./components/ErrorCard";
 
 function App() {
+  const initialFormData = {
+    category: "animals-and-nature",
+    number: 5,
+  };
   const [isGameOn, setIsGameOn] = useState(false);
   const [emojiData, setEmojiData] = useState([]);
   const [selectedCard, setSelectedCard] = useState([]);
   const [matchCards, setMatchCards] = useState([]);
   const [areAllCardsMatched, setAreAllCardsMatched] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [formData, setFormData] = useState(initialFormData);
+  console.log(formData);
 
   useEffect(
     () => {
@@ -43,7 +49,7 @@ function App() {
     try {
       if (isError) throw new Error("I am now throwing new custom error");
       const response = await fetch(
-        "https://emojihub.yurace.pro/api/all/category/animals-and-nature"
+        `https://emojihub.yurace.pro/api/all/category/${formData.category}`
       );
 
       if (!response.ok) {
@@ -73,7 +79,7 @@ function App() {
 
   function getRandomIndecies(data) {
     const randomIndeciesArray = [];
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < formData.number / 2; i++) {
       const randomNum = Math.floor(Math.random() * data.length) + 1;
       if (!randomIndeciesArray.includes(randomNum)) {
         randomIndeciesArray.push(randomNum);
@@ -121,6 +127,14 @@ function App() {
     setIsError(false);
   }
 
+  const handleFormChange = (e) => {
+    e.preventDefault();
+    setFormData((prevData) => ({
+      ...prevData,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
   return (
     <main>
       {areAllCardsMatched && (
@@ -132,7 +146,9 @@ function App() {
         />
       )}
       <h1>Memory</h1>
-      {!areAllCardsMatched && !isError && <Form handleSubmit={startGame} />}
+      {!areAllCardsMatched && !isError && (
+        <Form handleSubmit={startGame} handleChange={handleFormChange} />
+      )}
       {isGameOn && !areAllCardsMatched && (
         <AssistiveTechInfo emojiData={emojiData} matchCards={matchCards} />
       )}
