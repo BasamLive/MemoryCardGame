@@ -1,6 +1,6 @@
 const AssistiveTechInfo = ({ emojiData, matchCards }) => {
   return (
-    <section className="sr-only">
+    <section className="sr-only" aria-live="polite" aria-atomic="true">
       <h2>Game Status</h2>
       <p>Number matched pair: {matchCards.length / 2}</p>
       <p>

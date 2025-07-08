@@ -4,6 +4,7 @@ import Confetti from "react-confetti";
 import Form from "./components/Form";
 import MemoryCard from "./components/MemoryCard";
 import AssistiveTechInfo from "./components/AssistiveTechInfo";
+import GameOver from "./components/GameOver";
 
 function App() {
   const [isGameOn, setIsGameOn] = useState(false);
@@ -104,6 +105,14 @@ function App() {
     }
   }
 
+  const resetGame = () => {
+    setIsGameOn(false);
+    setAreAllCardsMatched(false);
+
+    setMatchCards([]);
+    setSelectedCard([]);
+  };
+
   return (
     <main>
       {areAllCardsMatched && (
@@ -119,6 +128,7 @@ function App() {
       {isGameOn && !areAllCardsMatched && (
         <AssistiveTechInfo emojiData={emojiData} matchCards={matchCards} />
       )}
+      {areAllCardsMatched && <GameOver handleClick={resetGame} />}
       {isGameOn && (
         <MemoryCard
           handleClick={turnCard}
@@ -129,6 +139,8 @@ function App() {
       )}
     </main>
   );
+
+  // ill stop till here today however ill proceed from tomorrow and the same time
 }
 
 export default App;
