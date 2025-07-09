@@ -27,6 +27,7 @@ function App() {
   const [areAllCardsMatched, setAreAllCardsMatched] = useState(false);
   const [isError, setIsError] = useState(false);
   const [formData, setFormData] = useState(initialFormData);
+  const [isFirstRender, setIsFirstRender] = useState(true);
 
   useEffect(
     () => {
@@ -73,9 +74,13 @@ function App() {
 
       setEmojiData(emojisArray);
       setIsGameOn(true);
+      setIsFirstRender(false);
     } catch (error) {
       console.log(error);
       setIsError(true);
+      setIsFirstRender(false);
+    } finally {
+      setIsFirstRender(false);
     }
   }
   //////////////////////////////////////////////////////////
@@ -173,7 +178,11 @@ function App() {
       )}
       <h1>Memory</h1>
       {!areAllCardsMatched && !isError && (
-        <Form handleSubmit={startGame} handleChange={handleFormChange} />
+        <Form
+          handleSubmit={startGame}
+          handleChange={handleFormChange}
+          isFirstRender={isFirstRender}
+        />
       )}
       {isGameOn && !areAllCardsMatched && (
         <AssistiveTechInfo emojiData={emojiData} matchCards={matchCards} />

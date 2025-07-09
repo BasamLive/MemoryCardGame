@@ -1,12 +1,22 @@
+import { useEffect, useRef } from "react";
 import RegularButton from "../components/RegularButton";
 import Select from "./Select";
 
-const Form = ({ handleSubmit, handleChange }) => {
+const Form = ({ handleSubmit, handleChange, isFirstRender }) => {
+  const divRef = useRef(null);
+  useEffect(() => {
+    !isFirstRender && divRef.current.focus();
+  }, [isFirstRender]);
   return (
-    <div className="form-container">
+    <div
+      className="form-container"
+      ref={divRef}
+      aria-atomic={true}
+      tabIndex={-1}
+    >
       <p className="p-regular">
         customize the game by selecting an emoji category and a number of memory
-        cards.
+        cards
       </p>
       <form className="wrapper">
         <Select handleChange={handleChange} />
