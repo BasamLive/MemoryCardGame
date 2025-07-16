@@ -156,6 +156,7 @@ function App() {
 
     setMatchCards([]);
     setSelectedCard([]);
+    setAdvice("");
   };
 
   ////////////////////////
