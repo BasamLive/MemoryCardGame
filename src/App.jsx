@@ -28,6 +28,16 @@ function App() {
   const [isError, setIsError] = useState(false);
   const [formData, setFormData] = useState(initialFormData);
   const [isFirstRender, setIsFirstRender] = useState(true);
+  const [advice, setAdvice] = useState("");
+
+  useEffect(() => {
+    const getData = async () => {
+      const res = await fetch("https://api.adviceslip.com/advice");
+      const data = await res.json();
+      setAdvice(data.slip.advice);
+    };
+    getData();
+  }, []);
 
   useEffect(
     () => {
@@ -197,6 +207,7 @@ function App() {
         />
       )}
       {isError && <ErrorCard handleClick={resetError} />}
+      {advice && <p>{advice}</p>}
     </main>
   );
 }
