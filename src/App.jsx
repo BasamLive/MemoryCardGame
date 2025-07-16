@@ -207,7 +207,7 @@ function App() {
         />
       )}
       {isError && <ErrorCard handleClick={resetError} />}
-      {advice && <p className="advice">{advice}</p>}
+      {advice ? <p className="advice">{advice}</p> : <p>Loding advice....</p>}
     </main>
   );
 }
