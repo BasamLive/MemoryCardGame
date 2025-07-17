@@ -31,6 +31,13 @@ main {
   padding: 2em;
 }
 
+@media (min-width: 780px) {
+  main {
+    width: 600px;
+    margin: 0 auto;
+  }
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -256,6 +263,6 @@ Media queries
   line-height: 1.6;
   font-style: italic;
   font-weight: bold;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 5px rgba(226, 203, 123, 0.05);
   border-radius: 6px;
 }
