@@ -263,6 +263,6 @@ Media queries
   line-height: 1.6;
   font-style: italic;
   font-weight: bold;
-  box-shadow: 0 2px 5px rgba(226, 203, 123, 0.05);
+  box-shadow: 0 2px 5px white;
   border-radius: 6px;
 }
