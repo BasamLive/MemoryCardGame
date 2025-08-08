@@ -152,7 +152,7 @@ function App() {
   const resetGame = () => {
     setIsGameOn(false);
     setAreAllCardsMatched(false);
-
+    a;
     setMatchCards([]);
     setSelectedCard([]);
   };
@@ -207,10 +207,10 @@ function App() {
         />
       )}
       {isError && <ErrorCard handleClick={resetError} />}
-      {advice ? (
+      {isGameOn ? (
         <p className="advice">{advice}</p>
       ) : (
-        <p className="advice">Loding advice....</p>
+        <p className="advice">Loading new advice....</p>
       )}
     </main>
   );
