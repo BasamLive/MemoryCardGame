@@ -9,6 +9,7 @@ import MemoryCard from "./components/MemoryCard";
 import AssistiveTechInfo from "./components/AssistiveTechInfo";
 import GameOver from "./components/GameOver";
 import ErrorCard from "./components/ErrorCard";
+import Victory from "./components/Victory";
 /////////////////////////////
 // The beginning of our app
 ////////////////////////////
@@ -115,8 +116,6 @@ function App() {
         i--;
       }
     }
-    console.log(formData.number);
-    console.log(randomIndeciesArray);
     return randomIndeciesArray;
   }
   /////////////////////////
@@ -186,6 +185,7 @@ function App() {
           recycle={false}
         />
       )}
+      {areAllCardsMatched && <Victory />}
       <h1>Memory</h1>
       {!areAllCardsMatched && !isError && (
         <Form
